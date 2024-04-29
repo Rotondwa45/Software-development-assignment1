@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Details Survey</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .section {
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="date"], /* Changed input type to date */
+        input[type="checkbox"],
+        select {
+            width: calc(100% - 10px);
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+
+        button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="section" id="personal-details">
+            <h1>Personal Details</h1>
+            <label for="full-name">Full Name:</label>
+            <input type="text" id="full-name" placeholder="Enter your full name">
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" placeholder="Enter your email">
+
+            <label for="dob">Date of Birth:</label>
+            <input type="date" id="dob" max="" min=""> <!-- Changed input type to date -->
+
+            <label for="contact-number">Contact Number:</label>
+            <input type="text" id="contact-number" placeholder="Enter your contact number">
+        </div>
+
+        <div class="section" id="favorite-food">
+            <h1>Favorite Food</h1>
+            <label><input type="checkbox"> Pizza</label>
+            <label><input type="checkbox"> Pasta</label>
+            <label><input type="checkbox"> Pap and Wors</label>
+            <label><input type="checkbox"> Other</label>
+        </div>
+
+        <div class="section" id="review-program">
+            <h1>Review the Program</h1>
+            <label for="movie-rating">I like to watch movies:</label>
+            <select id="movie-rating">
+                <option>Strongly Agree</option>
+                <option>Agree</option>
+                <option>Neutral</option>
+                <option>Disagree</option>
+                <option>Strongly Disagree</option>
+            </select>
+
+            <label for="radio-rating">I like to listen to radio:</label>
+            <select id="radio-rating">
+                <option>Strongly Agree</option>
+                <option>Agree</option>
+                <option>Neutral</option>
+                <option>Disagree</option>
+                <option>Strongly Disagree</option>
+            </select>
+
+            <label for="eat-out-rating">I like to eat out:</label>
+            <select id="eat-out-rating">
+                <option>Strongly Agree</option>
+                <option>Agree</option>
+                <option>Neutral</option>
+                <option>Disagree</option>
+                <option>Strongly Disagree</option>
+            </select>
+
+            <label for="tv-rating">I like to watch TV:</label>
+            <select id="tv-rating">
+                <option>Strongly Agree</option>
+                <option>Agree</option>
+                <option>Neutral</option>
+                <option>Disagree</option>
+                <option>Strongly Disagree</option>
+            </select>
+        </div>
+
+        <button onclick="saveDetails()">Submit</button>
+    </div>
+
+    <script>
+        function saveDetails() {
+            var fullName = document.getElementById("full-name").value;
+            var email = document.getElementById("email").value;
+            var dob = document.getElementById("dob").value;
+            var contactNumber = document.getElementById("contact-number").value;
+            var favoriteFoods = [];
+            var checkboxes = document.querySelectorAll('#favorite-food input[type="checkbox"]');
+            checkboxes.forEach(function(checkbox) {
+                if (checkbox.checked) {
+                    favoriteFoods.push(checkbox.parentNode.textContent.trim());
+                }
+            });
+            var movieRating = document.getElementById("movie-rating").value;
+            var radioRating = document.getElementById("radio-rating").value;
+            var eatOutRating = document.getElementById("eat-out-rating").value;
+            var tvRating = document.getElementById("tv-rating").value;
+
+            // Implement logic to save survey details
+            console.log("Full Name:", fullName);
+            console.log("Email:", email);
+            console.log("Date of Birth:", dob);
+            console.log("Contact Number:", contactNumber);
+            console.log("Favorite Foods:", favoriteFoods);
+            console.log("Movie Rating:", movieRating);
+            console.log("Radio Rating:", radioRating);
+            console.log("Eat Out Rating:", eatOutRating);
+            console.log("TV Rating:", tvRating);
+        }
+
+        // Set min and max date for Date of Birth input
+        var today = new Date();
+        var maxDate = new Date(today.getFullYear() - 5, today.getMonth(), today.getDate());
+        var minDate = new Date(today.getFullYear() - 120, today.getMonth(), today.getDate());
+        document.getElementById("dob").setAttribute("max", maxDate.toISOString().split('T')[0]);
+        document.getElementById("dob").setAttribute("min", minDate.toISOString().split('T')[0]);
+    </script>
+</body>
+</html>
